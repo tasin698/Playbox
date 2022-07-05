@@ -1,0 +1,62 @@
+{%extends 'musicbeats/basic.htm'%}
+{% block title%}All Songs{% endblock %}
+
+{% block body %}
+
+{% if message%}
+<script>
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: '{{message}}',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    </script>
+{% endif %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6" style="padding-top: 3%;">
+            <img src="{{song.image}}" style="width: 100%; height: 10vw; object-fit: cover;" class="card-img-top" alt="">
+        </div>
+        <div class="col-md-6">
+            <h2 style="padding-top: 6%; font-weight: 550; color: green;">Title: {{song.name}}</h2>
+            <h5 style="padding-top: 2%; font-weight: 550;">Category: {{song.tags}}</h5>
+            <h5 style="padding-top: 2%; font-weight: 550;">Movie: {{song.movie}}</h5>
+            <h5 style="padding-top: 2%; font-weight: 550;">Singer: {{song.singer}}</h5>
+
+                <audio controls style="padding-top: 2%;">
+                    <source src="/media/{{song.song}}" type="audio/mp3">
+                </audio>
+
+            <div style="padding-top: 2%;">
+            <div class="row" style="padding-left: 3%;">
+            <form action="/musicbeats/listenlater" method="POST">{% csrf_token %}
+            <input type="hidden" name="listen_music_id" value="{{song.song_id}}">
+            <button type="submit" class="btn btn-outline-danger" id="submit_btn">Add to Listen Later</button>
+            </form>
+           
+            <div class="row" style="padding-left: 3%;">
+            <form action="/musicbeats/favourites" method="POST">{% csrf_token %}
+            <input type="hidden" name="fmusic_id" value="{{song.song_id}}">
+            <button type="submit" class="btn btn-outline-danger" id="submit_btn">Add to Favourites</button>
+            </form>
+            </div>
+            <div style="padding-top: 2%; padding-left: 3%;"></div>
+            <a download href="/media/{{song.song}}" style="padding-left: 1%;"><button class="btn btn-outline-danger">Download Song</button></a>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+</script>
+
+{% endblock %}
+{% block js %}
+
+{% endblock%}
