@@ -1,0 +1,53 @@
+{%extends 'playread/basic.htm'%}
+{% block title%}All Books{% endblock %}
+
+{% block body %}
+
+{% if message%}
+<script>
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: '{{message}}',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    </script>
+{% endif %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6" style="padding-top: 3%;">
+            <img src="{{book.image}}" style="width: 100%; height: 10vw; object-fit: cover;" class="card-img-top" alt="">
+        </div>
+        <div class="col-md-6">
+            <h2 style="padding-top: 6%; font-weight: 550; color: green;">Title: {{book.name}}</h2>
+            <h5 style="padding-top: 2%; font-weight: 550;">Category: {{book.tags}}</h5>
+            <h5 style="padding-top: 2%; font-weight: 550;">Description: {{book.description}}</h5>
+            <h5 style="padding-top: 2%; font-weight: 550;">Author: {{book.author}}</h5>
+
+            <a href="/media/{{book.book}}" style="padding-left: 1%;"><button class="btn btn-outline-danger" target="_blank" >Read Book</button></a>
+
+            <div style="padding-top: 2%;">
+
+            <div class="row" style="padding-left: 3%;">
+            <form action="/playread/readlater" method="POST">{% csrf_token %}
+            <input type="hidden" name="read_novel_id" value="{{book.book_id}}">
+            <button type="submit" class="btn btn-outline-danger" id="submit_btn">Add to Read Later</button>
+            </form>
+            <a download href="/media/{{book.book}}" style="padding-left: 1%;"><button class="btn btn-outline-danger">Download Book</button></a>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+</script>
+
+{% endblock %}
+{% block js %}
+
+{% endblock%}

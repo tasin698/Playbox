@@ -1,0 +1,33 @@
+{%extends 'playread/basic.htm'%}
+{% block title%}playread{% endblock %}
+
+{% block body %}
+{% load static %} 
+<h1 style="color: rgb(158, 60, 60); text-align: center;"> Read History</h1>
+
+{% if readhistory|length < 1 %}
+        <h3 style="text-align: center; padding-top: 5%;">You have no Novel in your Read History</h3>
+{% endif %}
+
+<div class="container">
+{% for i in readhistory reversed %}
+<div class="card mb-3" style="max-width: 940px; padding-top: 0%;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="{{i.image}}" style="width: 100%; height: 10vw; object-fit: cover;" class="card-img-top" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title" style="color: green; font-weight: 550;">{{i.name}}</h5>
+          <p class="card-text">Tags: {{i.tags}}</p>
+        <p class="card-text">Description: {{i.description}}</p>
+          <a href="/playread/books/{{i.book_id}}"><button class="btn btn-outline-danger">Read Book</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+</div>
+
+{% endblock %}
