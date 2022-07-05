@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %} index {% endblock %}
+{% block body %}
+
+<section>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div- class="col-md-6 mx-auto">
+        <div>
+          <h2 align=center>"Welcome to PLAYBOX!" <h4 align=center>One stop place for your Entertainment at your
+              fingertips
+            </h4>
+          </h2>
+          <hr>
+          <!--img src="{% static 'img/cover.png'%}" alt="cover"
+              style="display: block; margin-left:auto; margin-right: auto; width: 100%;"-->
+
+          <style>
+            .hover06 .content img {
+              -webkit-transform: rotate(0) scale(1);
+              transform: rotate(0) scale(1);
+              -webkit-transition: .3s ease-in-out;
+              transition: .3s ease-in-out;
+            }
+
+            .hover06 .content:hover img {
+              -webkit-transform: rotate(15deg) scale(1.32);
+              transform: rotate(15deg) scale(1.32);
+            }
+
+            .column {
+              margin: 15px 15px 0;
+              padding: 0;
+            }
+
+            .column:last-child {
+              padding-bottom: 60px;
+            }
+
+            .column::after {
+              content: '';
+              clear: both;
+              display: block;
+            }
+
+            .column div {
+              position: relative;
+              float: left;
+              width: 225px;
+              height: 225px;
+              margin: 0 0 0 50px;
+              padding: 0;
+            }
+
+            .column div:first-child {
+              margin-left: 50;
+            }
+
+            .column div span {
+              position: absolute;
+              bottom: -20px;
+              left: 0;
+              z-index: -1;
+              display: block;
+              width: 300px;
+              margin: 0;
+              padding: 0;
+              color: #444;
+              font-size: 18px;
+              text-decoration: none;
+              text-align: center;
+              -webkit-transition: .3s ease-in-out;
+              transition: .3s ease-in-out;
+              opacity: 0;
+            }
+
+            .content {
+              width: 300px;
+              height: 200px;
+              margin: 0;
+              padding: 0;
+              background: #fff;
+              overflow: hidden;
+            }
+
+            .content:hover+span {
+              bottom: -36px;
+              opacity: 1;
+            }
+          </style>
+
+          <div class="hover06 column">
+            <div>
+              <div class="content"><a href="/playwatch/homewatch/"><img src="{% static 'img/movie_logo.png'%}" /></a>
+              </div>
+              <span>Play Movies</span>
+            </div>
+            <div>
+              <div class="content"><a href="/musicbeats/home/"><img src="{% static 'img/music_logo.png'%}" /></a>
+              </div>
+              <span>Play Musics</span>
+            </div>
+            <div>
+              <div class="content"><a href="/playread/homeread/"><img src="{% static 'img/comic_logo.png'%}" /></a>
+              </div>
+              <span>Read Comics</span>
+            </div>
+
+
+          </div>
+          <br>
+          <hr>
+          <br>
+          <h5 align=center>Enjoy all your favourite shows with PLAYBOX in one place.
+          </h5>
+          <h5 align=center>Click on any option and start exploring PLAYBOX.</h5>
+</section>
+<div>
+</div>
+</div>
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<br>
+<br>
+
+{% endblock %}

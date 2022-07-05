@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %} Senior Register {% endblock %}
+{% block body %}
+<section>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="card text-white bg-dark border-dark mb-3">
+          <div class="card-header">
+            <blockquote class="blockquote text-center">
+              <h2>Senior Registration</h2>
+            </blockquote>
+          </div>
+          <div class="card-body">
+            <form action="{% url 'senior_register' %}" method="POST" novalidate enctype="multipart/form-data">
+              {% csrf_token %}
+              {% for field in form.visible_fields %}
+              <div class="form-group">
+                <span style="color:black">{{ field.label_tag }} </span>
+                {% render_field field class="form-control" %}
+                {% for error in field.errors %}
+                <span style="color:red">{{ error }}</span>
+                {% endfor %}
+                {% endfor %}
+                <hr>
+                <input type="submit" value="Submit" class="btn btn-secondary btn-lg btn-block">
+              </div>
+            </form>
+            <div class="border-top pt-3">
+              <small class="text-muted">
+                <h9><b> Have an Account? </b></h9> <a class="btn btn-secondary btn-sm btn-lg active" role="button"
+                  aria-pressed="true" href="{% url 'login' %}">Sign in</a>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+<br>
+<br>
+<footer clas="py-3" <p class="text-center" style="color:grey;"> © PLAYBOX™ 2022 </p>
+</footer>
+{% endblock %}

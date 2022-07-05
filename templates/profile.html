@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %} User Profile {% endblock %}
+{% block body %}
+
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="card text-white bg-dark border-dark mb-3">
+          <div class="card-header">
+            <blockquote class="blockquote text-center">
+              <p class="mb-0">
+                <h2>Hello {{name}}!</h2>
+              </p>
+            </blockquote>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">
+              <span style="color:black">
+                <h4> Profile Details - </h4>
+              </span>
+               <!-- added new for profile picture-->
+              {% if  user.is_junior or user.is_juniorplus or user.is_senior %}
+              <center><img class="profile-pic" src="{{request.user.junior.profile_pic.url}}"></center>
+              <center><img class="profile-pic" src="{{request.user.juniorplus.profile_pic.url}}"></center>
+              <center><img class="profile-pic" src="{{request.user.senior.profile_pic.url}}"></center>
+              <hr>
+              {% endif %}
+              <!-- end for profile picture-->
+              <p class="card-text text-dark">Username: {{name}}</p>
+              <p class="card-text text-dark">First name: {{first_name}}</p>
+              <p class="card-text text-dark">Last name: {{last_name}}</p>
+              <p class="card-text text-dark">Email: {{email}}</p>
+              <p class="card-text text-dark">Account type: {{account_type}}</p>
+              <p class="card-text text-dark">Joined on {{user.date_joined}}</p>
+              {% if  user.is_junior%}
+              <p class="card-text text-dark">Phone: {{user.junior.phone_number}}</p>
+              {% endif %}
+
+              {% if  user.is_juniorplus%}
+              <p class="card-text text-dark">Phone: {{user.juniorplus.phone_number}}</p>
+              {% endif %}
+
+              {% if  user.is_senior%}
+              <p class="card-text text-dark">Phone: {{user.senior.phone_number}}</p>
+              {% endif %}             
+          </div>
+          {% if messages %}
+          {% for message in messages %}
+          <small {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</small>
+          {% endfor %}
+          {% endif %}
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<br>
+<br>
+<footer clas="py-3" <p class="text-center" style="color:grey;"> © PlayBox™ 2022 </p>
+</footer>
+{% endblock %}
