@@ -1,0 +1,64 @@
+{%extends 'playwatch/basic.htm'%}
+{% block title%}All Movies{% endblock %}
+
+{% block body %}
+
+{% if message%}
+<script>
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: '{{message}}',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    </script>
+{% endif %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6" style="padding-top: 3%;">
+            <img src="{{movie.image}}" style="width: 100%; height: 10vw; object-fit: cover;" class="card-img-top" alt="">
+        </div>
+        <div class="col-md-6">
+            <h2 style="padding-top: 6%; font-weight: 550; color: green;">Title: {{movie.name}}</h2>
+            <h5 style="padding-top: 2%; font-weight: 550;">Category: {{movie.tags}}</h5>
+            <h5 style="padding-top: 2%; font-weight: 550;">Movie: {{movie.description}}</h5>
+            <h5 style="padding-top: 2%; font-weight: 550;">Director: {{movie.director}}</h5>
+
+                <!--video controls style="padding-top: 2%;">
+                    <source src="/media/{{movie.movie}}" type="video/mp4">
+                </video-->
+                <a href="/media/{{movie.movie}}" style="padding-left: 1%;"><button class="btn btn-outline-danger" target="_blank" >Watch Movie</button></a>
+
+            <div style="padding-top: 2%;">
+
+            <div class="row" style="padding-left: 3%;">
+            <form action="/playwatch/watchlater" method="POST">{% csrf_token %}
+            <input type="hidden" name="watch_video_id" value="{{movie.movie_id}}">
+            <button type="submit" class="btn btn-outline-danger" id="submit_btn">Add to Watch Later</button>
+            </form>
+
+            <div class="row" style="padding-left: 3%;">
+            <form action="/playwatch/wfavourites" method="POST">{% csrf_token %}
+            <input type="hidden" name="fvideo_id" value="{{movie.movie_id}}">
+            <button type="submit" class="btn btn-outline-danger" id="submit_btn">Add to Favourites</button>
+            </form>
+            </div>
+            <div style="padding-top: 2%; padding-left: 3%;"></div>
+            <a download href="/media/{{movie.movie}}" style="padding-left: 1%;"><button class="btn btn-outline-danger">Download Movie</button></a>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+</script>
+
+{% endblock %}
+{% block js %}
+
+{% endblock%}

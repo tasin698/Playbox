@@ -1,0 +1,33 @@
+{%extends 'playwatch/basic.htm'%}
+{% block title%}All Movies{% endblock %}
+{% block body %}
+<div class="container">
+
+<br><br><br>
+{% for i in movie reversed %}
+<br>
+<div class="card mb-3" style="max-width: 940px; padding-top: 0%;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src=" {{i.image}} " style="width: 100%; height: 10vw; object-fit: cover;" class="card-img-top" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title" style="color: green; font-weight: 550;">{{i.name}}</h5>
+          <p class="card-text">Tags: {{i.tags}}</p>
+        <p class="card-text">Description: {{i.description}}</p>
+        {% if user.is_authenticated %}
+        <form action="/playwatch/watchhistory" method="POST">{% csrf_token %}
+          <input type="hidden" name="video_id" value="{{i.movie_id}}">
+          <a href="/playwatch/movies/{{i.movie_id}}"><button class="btn btn-outline-danger">Watch Movie</button></a>
+        </form>
+        {% else %}
+        <a href="/playwatch/movies/{{i.movie_id}}"><button class="btn btn-outline-danger">Watch Movie</button></a>
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
